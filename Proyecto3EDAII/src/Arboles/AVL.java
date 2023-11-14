@@ -42,27 +42,32 @@ public class AVL {
         }
     }
     
-    public Node max(Node node){
-        if(node.right == null){
-            return node;
-        }
-        else{
-            return min(node.right);
+    public int maxHeight(Node l,Node r){
+        int lh = getHeight(l);
+        int rh = getHeight(r);
+        if(lh>rh){
+            return lh;
+        }else{
+            return rh;
         }
     }
     
     public void add(int data){
         root = add(root,data,0);
+        root.height = maxHeight(root.left,root.right)+1;
     }
     
     private Node add(Node root,int data,int height){
         //System.out.println("a");
         if(root == null){
-            return (new Node(data,height));
+            //return (new Node(data,height)); //test
+            return (new Node(data,0));
         }else if(data < root.data){
             root.left = add(root.left,data,height+1);
+            root.height = maxHeight(root.left,root.right)+1; //test
         }else{
             root.right = add(root.right,data,height+1);
+            root.height = maxHeight(root.left,root.right)+1; //test
         }
         return root;
         
