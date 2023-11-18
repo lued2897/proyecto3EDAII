@@ -4,6 +4,7 @@
  */
 package Arboles;
 
+import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -129,6 +130,33 @@ public class AVL {
             }
 	}
     }
+
+    
+    public void traversePreOrder(StringBuilder sb, String padding, String pointer, Node node) {
+        if (node != null) {
+            sb.append(padding);
+            sb.append(pointer);
+            sb.append(node.data);  
+            sb.append("\n");
+
+            StringBuilder paddingBuilder = new StringBuilder(padding);
+            paddingBuilder.append("│  ");
+
+            String paddingForBoth = paddingBuilder.toString();
+            String pointerForRight = "└──";
+            String pointerForLeft = (node.right != null) ? "├──" : "└──";
+
+            traversePreOrder(sb, paddingForBoth, pointerForLeft, node.left);
+            traversePreOrder(sb, paddingForBoth, pointerForRight, node.right);
+        }
+    }
+
+    public void print(PrintStream os) {
+        StringBuilder sb = new StringBuilder();
+        traversePreOrder(sb, "", "", root); 
+        os.print(sb.toString());
+    }
+    
     
     class Node{
         int height;
@@ -164,13 +192,13 @@ public class AVL {
           /  \  / \   /  \   / \
          15 25 35 45 55  65 75  85
         */
+        
         AVL tree = new AVL();
         for(int i: values){
             tree.add(i);
         }
         tree.remove(30);
         tree.breadthFrist();
+        tree.print(System.out);
     }
 }
-//kasjbkasfjbk
-//holaz
