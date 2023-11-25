@@ -12,18 +12,18 @@ import java.util.Queue;
  *
  * @author lalox
  */
-public class AVL {
+public class Tree {
     Node root;
     
-    public AVL(){
+    public Tree(){
         root = null; 
     }
     
-    public AVL(int data){
+    public Tree(int data){
         root = new Node(data); 
     }
     
-    public AVL(Node node){
+    public Tree(Node node){
         root=node;
     }
     
@@ -193,11 +193,11 @@ public class AVL {
          15 25 35 45 55  65 75  85
         */
         
-        AVL tree = new AVL();
+        Tree tree = new Tree();
         for(int i: values){
             tree.add(i);
         }
-        tree.remove(30);
+        //tree.remove(30);
         tree.breadthFrist();
         tree.print(System.out);
     }
