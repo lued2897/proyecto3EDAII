@@ -29,7 +29,8 @@ public class Tree {
     
     public int getHeight(Node node){
         if(node==null){
-            return -1;
+            //return -1;
+            return 0 ;
         }
         return node.height;
     }
@@ -74,7 +75,7 @@ public class Tree {
         
     }
     
-    private Node removeMin(Node node){
+    protected Node removeMin(Node node){
         if(node.left == null){
             return node.right;
         }
@@ -137,6 +138,7 @@ public class Tree {
             sb.append(padding);
             sb.append(pointer);
             sb.append(node.data);  
+            sb.append(",").append(node.height); 
             sb.append("\n");
 
             StringBuilder paddingBuilder = new StringBuilder(padding);
@@ -182,7 +184,7 @@ public class Tree {
     }
     
     public static void main(String[] args) {
-        int values[] = {50,30,20,40,70,60,80,15,25,35,45,55,65,75,85};
+        int values[] = {50,30,20,40,70,60,80,15,25,35,45,55,65,75,85,72,78,71,73};
         /*
                     50  
                /         \
@@ -191,6 +193,10 @@ public class Tree {
            20   40     60    80
           /  \  / \   /  \   / \
          15 25 35 45 55  65 75  85
+                            /\
+                           72 78
+                          / \
+                         71  73
         */
         
         Tree tree = new Tree();
@@ -199,6 +205,7 @@ public class Tree {
         }
         //tree.remove(30);
         tree.breadthFrist();
+        tree.print(System.out);
         tree.print(System.out);
     }
 }
