@@ -112,7 +112,7 @@ public class AVL extends Tree {
        if(node == null){
            return 0;
        }else{
-           System.out.println("leftH:"+getHeight(node.left)+"  rightH:"+getHeight(node.right));
+           //System.out.println("leftH:"+getHeight(node.left)+"  rightH:"+getHeight(node.right));
            int buffer = getHeight(node.left);
            int l =( buffer != -1 )?(buffer):(0);
            buffer = getHeight(node.right);
@@ -126,23 +126,29 @@ public class AVL extends Tree {
    //Metodo para balancear la insercion
    private Node balance(Node node, int data){
        int balance = getBalance(node);
-       System.out.println("data:"+node.data+"  bal:"+balance);
+       //System.out.println("data:"+node.data+"  bal:"+balance);
        //this.print(System.out);
        if(Math.abs(balance) <=1 ){
            return node;
        }
        if(balance > 1 && data < node.left.data){
+           System.out.println("Right Rotation");
            return rightRotation(node);
            
        }else if(balance < -1 && data > node.right.data){
+           System.out.println("Left Rotation");
            return leftRotation(node);
            
        }else if(balance > 1 && data > node.left.data){
+           System.out.println("Left Rotation");
            node.left = leftRotation(node.left);
+           System.out.println("Right Rotation");
            return rightRotation(node);
            
        }else if(balance < -1 && data < node.right.data){
+           System.out.println("Right Rotation");
            node.right = rightRotation(node.right);
+           System.out.println("Left Rotation");
            return leftRotation(node);
             
        }
@@ -151,23 +157,29 @@ public class AVL extends Tree {
    
    private Node balance(Node node){
        int balance = getBalance(node);
-       System.out.println("data:"+node.data+"  bal:"+balance);
+       //System.out.println("data:"+node.data+"  bal:"+balance);
        //this.print(System.out);
        if(Math.abs(balance) <=1 ){
            return node;
        }
        if(balance > 1 && getBalance(node.left) >=0){
+           System.out.println("Right Rotation");
            return rightRotation(node);
            
        }else if(balance < -1 && getBalance(node.right) <= 0){
+           System.out.println("Left Rotation");
            return leftRotation(node);
            
        }else if(balance > 1 && getBalance(node.left) < 0){
+           System.out.println("Left Rotation");
            node.left = leftRotation(node.left);
+           System.out.println("Right Rotation");
            return rightRotation(node);
            
        }else if(balance < -1 && getBalance(node.right) > 0){
+           System.out.println("Right Rotation");
            node.right = rightRotation(node.right);
+           System.out.println("Left Rotation");
            return leftRotation(node);
             
        }
@@ -196,6 +208,9 @@ public class AVL extends Tree {
         AVL tree = new AVL();
         for(int i: values){
             tree.add(i);
+            System.out.print("added "+i+"\n");
+            tree.print(System.out);
+            System.out.print("\n\n\n");
         }
         //tree.remove(30);
         tree.breadthFrist();
