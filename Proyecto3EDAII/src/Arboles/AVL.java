@@ -85,6 +85,7 @@ public class AVL extends Tree {
         
         node.height = maxHeight(node.left,node.right)+1;
         if(rl != null){
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             rl.height = maxHeight(rl.left,rl.right)+1;
         }   
         r.height = maxHeight(r.left,r.right)+1;
@@ -101,6 +102,7 @@ public class AVL extends Tree {
         
         node.height = maxHeight(node.left,node.right)+1;
         if(lr != null){
+            System.out.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
             lr.height = maxHeight(lr.left,lr.right)+1;
         }
         l.height = maxHeight(l.left,l.right)+1;
@@ -186,6 +188,24 @@ public class AVL extends Tree {
        return node;
    }
    
+   public boolean search(int data){
+       return search(this.root,data);
+   }
+   
+   private boolean search(Node node,int data){
+       if(node == null){
+            return false;
+        }else if(data == node.data){
+            return true;
+        }else if(data < node.data){
+            return search(node.left,data);
+            //root.height = maxHeight(root.left,root.right)+1; //test
+        }else{
+            return search(node.right,data);
+            //root.height = maxHeight(root.left,root.right)+1; //test
+        }
+   }
+   
    //Balanceo para la eliminacion
    public static void main(String[] args) {
         int values[] = {50,30,20,40,70,60,80,15,25,35,45,55,65,75,85,72,78,71,73};
@@ -216,10 +236,14 @@ public class AVL extends Tree {
         tree.breadthFrist();
         tree.print(System.out);
         System.out.println("ñgdsgds");
+        System.out.println(tree.search(78));
+        System.out.println(tree.search(25));
         
         tree.remove(15);
         tree.remove(25);
         tree.remove(20);
+        System.out.println(tree.search(78));
+        System.out.println(tree.search(25));
         tree.print(System.out);
     
         

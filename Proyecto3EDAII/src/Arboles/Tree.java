@@ -138,7 +138,8 @@ public class Tree {
             sb.append(padding);
             sb.append(pointer);
             sb.append(node.data);  
-            sb.append(",").append(node.height); 
+            sb.append(",");
+            sb.append(node.height); 
             sb.append("\n");
 
             StringBuilder paddingBuilder = new StringBuilder(padding);
