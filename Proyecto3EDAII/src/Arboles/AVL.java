@@ -336,6 +336,7 @@ public class AVL extends Tree {
         System.out.println("(3) Buscar clave");
         System.out.println("(4) Mostrar arbol");
         System.out.println("(5) Nuevo arbol");
+        System.out.println("(-1) Salir");
     }
     
     private int readInt(){
