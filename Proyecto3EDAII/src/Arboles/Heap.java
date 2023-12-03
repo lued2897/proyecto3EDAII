@@ -3,6 +3,7 @@ package Arboles;
 import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Heap {
     private Node root;
@@ -181,27 +182,68 @@ private Node encontrarPadreUltimoNodo(Node node) {
     }
 
     public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
         Heap heap = new Heap();
 
-        int values[] = {30, 50, 20, 40, 70, 60, 80, 15, 25, 35, 45, 55, 65, 75, 85,105,120,11,2};
-        for (int i : values) {
-            heap.add(i);
-        }
+        int opcion;
+        do {
+            System.out.println("\n-------MENÚ HEAP-------:");
+            System.out.println("1. Agregar clave");
+            System.out.println("2. Eliminar raiz");
+            System.out.println("3. Mostrar árbol");
+            System.out.println("4. Salir al menú principal");
+            System.out.print("Seleccione una opción: ");
 
-        System.out.println("BFS:");
-        heap.breadthFirst();
+            opcion = scanner.nextInt();
+            scanner.nextLine(); 
 
-        System.out.println("Árbol:");
-        heap.print(System.out);
-        
-        heap.preOrden();
-        
-        System.out.println("Eliminar raiz:");
-        heap.eliminarRaiz(); 
-        heap.eliminarRaiz(); 
- 
+            switch (opcion) {
+                case 1:
+                    try {
+                        System.out.print("Ingrese cuántos valores desea agregar: ");
+                        int cantidadValores = scanner.nextInt();
 
-        heap.print(System.out);
-        heap.preOrden();
+                        for (int i = 0; i < cantidadValores; i++) {
+                            try {
+                                System.out.print("Ingrese el valor " + (i + 1) + ": ");
+                                int valor = scanner.nextInt();
+                                heap.add(valor);
+                            } catch (java.util.InputMismatchException e) {
+                                System.out.println("Error: Ingrese un valor válido.");
+                                scanner.nextLine();
+                                i--; 
+                            }
+                        }
+
+                        System.out.println("Valores agregados correctamente.");
+                    } catch (java.util.InputMismatchException e) {
+                        System.out.println("Error: Ingrese un número válido.");
+                        scanner.nextLine();
+                    }
+                    break;
+
+                case 2:
+                    heap.eliminarRaiz();
+                    System.out.println("Se eliminó la raiz con éxito");
+                    break;
+                case 3:
+                    System.out.println("Árbol:");
+                    heap.print(System.out);
+                    
+                    System.out.println("Recorrido BFS:");
+                    heap.breadthFirst();
+
+                    heap.preOrden();
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
+            }
+        } while (opcion != 4);
     }
 }
+
+    
+
