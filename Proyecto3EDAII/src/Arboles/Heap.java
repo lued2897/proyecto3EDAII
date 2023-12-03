@@ -244,6 +244,5 @@ private Node encontrarPadreUltimoNodo(Node node) {
         } while (opcion != 4);
     }
 }
-
     
 
