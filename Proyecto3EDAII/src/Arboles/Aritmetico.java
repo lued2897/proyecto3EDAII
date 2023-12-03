@@ -3,14 +3,19 @@ package Arboles;
 import java.io.PrintStream;
 import java.util.Stack;
 
-public class Aritmetico extends Tree {
+public class Aritmetico{
+    Node root;
     
     public Aritmetico() {
         super();
     }
 
-    public Aritmetico(int data) {
-        super(data);
+    public Aritmetico(char data) {
+        root= new Node(data);
+    }
+    
+    public Aritmetico(String postfix) {
+        expressionTree(postfix);
     }
 
     private static boolean isOperator(char c) {
@@ -26,7 +31,7 @@ public class Aritmetico extends Tree {
 	}
     }
     
-    public Node expressionTree(String postfix) {
+    private void expressionTree(String postfix) {
         Stack<Node> st = new Stack<>();
         Node t1, t2, temp;
 
@@ -47,8 +52,10 @@ public class Aritmetico extends Tree {
             }
         }
         temp = st.pop();
-        return temp;
+        this.root=temp;
+        //return temp;
     }
+    
     
     public static void inorder(Node root){
         if(root==null) return;
@@ -66,7 +73,7 @@ public class Aritmetico extends Tree {
             sb.append("\n");
 
             StringBuilder paddingBuilder = new StringBuilder(padding);
-            paddingBuilder.append("   ");
+            paddingBuilder.append("│  ");
 
             String paddingForBoth = paddingBuilder.toString();
             String pointerForRight = "└── ";
@@ -146,16 +153,16 @@ public class Aritmetico extends Tree {
         String notacionPostfija = ShuntingYard.infixToRpn(notacionInfija);
         System.out.println("Notacion Polaca Inversa: " + notacionPostfija);
                 
-        Aritmetico arbolAritmetico = new Aritmetico();
-        Node expressionTreeRoot = arbolAritmetico.expressionTree(notacionPostfija);
-        
+        Aritmetico arbolAritmetico = new Aritmetico(notacionPostfija);
+        //Node expressionTreeRoot = arbolAritmetico.expressionTree(notacionPostfija);
+        //arbolAritmetico.root = expressionTreeRoot;
 
         // Evaluate the expression tree
-        int result = arbolAritmetico.evaluateExpressionTree(expressionTreeRoot);
+        int result = arbolAritmetico.evaluateExpressionTree(arbolAritmetico.root);
         System.out.println("Resultado: " + result);
         
         // Imprimir el resultado de la operación
-        //arbolAritmetico.printExpressionTree(System.out);
+        arbolAritmetico.printExpressionTree(System.out);
         
     }
 }

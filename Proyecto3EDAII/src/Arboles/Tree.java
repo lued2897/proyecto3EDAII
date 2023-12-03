@@ -133,7 +133,7 @@ public class Tree {
     }
 
     
-    public void traversePreOrder(StringBuilder sb, String padding, String pointer, Node node) {
+    private void traversePreOrder(StringBuilder sb, String padding, String pointer, Node node) {
         if (node != null) {
             sb.append(padding);
             sb.append(pointer);
@@ -207,6 +207,6 @@ public class Tree {
         //tree.remove(30);
         tree.breadthFrist();
         tree.print(System.out);
-        tree.print(System.out);
+        //tree.print(System.out);
     }
 }
