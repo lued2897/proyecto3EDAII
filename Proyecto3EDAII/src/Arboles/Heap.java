@@ -88,7 +88,6 @@ public class Heap {
         if (node != null) {
             ordenar(node.left);
             ordenar(node.right);
-
             if (node.left != null && node.left.value > node.value) {
                 int temp = node.value;
                 node.value = node.left.value;
@@ -101,7 +100,8 @@ public class Heap {
                 node.value = node.right.value;
                 node.right.value = temp;
                 ordenar(node.right);
-            }
+            }           
+
         }
     }
     
@@ -110,17 +110,19 @@ public class Heap {
             return null;
         }
 
-        Node ultimoNodoPadre = encontrarPadreUltimoNodo(root);
+        Node padreUltimoNodo = encontrarPadreDelUltimoNodo();
 
-        if (ultimoNodoPadre == null) {
+        if (padreUltimoNodo == null) {
             root = null;
         } else {
-            if (ultimoNodoPadre.right != null) {
-                root.value = ultimoNodoPadre.right.value;
-                ultimoNodoPadre.right = null;
-            } else if (ultimoNodoPadre.left != null) {
-                root.value = ultimoNodoPadre.left.value;
-                ultimoNodoPadre.left = null;
+            if (padreUltimoNodo.right != null) {
+                root.value = padreUltimoNodo.right.value;
+                padreUltimoNodo.right = null;
+                System.out.println(padreUltimoNodo.value);
+            } else if (padreUltimoNodo.left != null) {
+                root.value = padreUltimoNodo.left.value;
+                padreUltimoNodo.left = null;
+                System.out.println(padreUltimoNodo.value);
             }
         }
         ordenar(root);
@@ -128,19 +130,39 @@ public class Heap {
         return root;
     }
 
-    private Node encontrarPadreUltimoNodo(Node node) {
-        if (node == null || (node.left == null && node.right == null)) {
-            return null;
-        }
-
-        if (node.right != null && (node.right.left != null || node.right.right != null)) {
-            return encontrarPadreUltimoNodo(node.right);
-        } else if (node.left!= null && (node.left.left != null || node.left.right != null)) {
-            return encontrarPadreUltimoNodo(node.left);
-        }
-
-        return node;
+private Node encontrarPadreDelUltimoNodo() {
+    if (root == null) {
+        return null;
     }
+
+    Queue<Node> queue = new LinkedList<>();
+    queue.add(root);
+    Node ultNodo = null;
+    Node padreDelUltNodo = null;
+
+    while (!queue.isEmpty()) {
+        int s = queue.size();
+
+        for (int i = 0; i < s; i++) {
+            Node current = queue.poll();
+
+            if (current.left == null && current.right == null) {
+                ultNodo = current;
+            }
+
+            if (current.left != null) {
+                queue.add(current.left);
+                padreDelUltNodo = current;  
+            }
+            if (current.right != null) {
+                queue.add(current.right);
+                padreDelUltNodo = current;  
+            }
+        }
+    }
+
+    return padreDelUltNodo;
+}
 
  private void traversePreOrder(StringBuilder sb, String padding, String pointer, Node node) {
         if (node != null) {
