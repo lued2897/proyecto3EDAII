@@ -104,42 +104,43 @@ public class Heap {
             }
         }
     }
-public Node eliminarRaiz() {
-    if (root == null) {
-        return null;
-    }
-
-    Node ultimoNodoPadre = encontrarPadreUltimoNodo(root);
-
-    if (ultimoNodoPadre == null) {
-        root = null;
-    } else {
-        if (ultimoNodoPadre.right != null) {
-            root.value = ultimoNodoPadre.right.value;
-            ultimoNodoPadre.right = null;
-        } else if (ultimoNodoPadre.left != null) {
-            root.value = ultimoNodoPadre.left.value;
-            ultimoNodoPadre.left = null;
+    
+    public Node eliminarRaiz() {
+        if (root == null) {
+            return null;
         }
+
+        Node ultimoNodoPadre = encontrarPadreUltimoNodo(root);
+
+        if (ultimoNodoPadre == null) {
+            root = null;
+        } else {
+            if (ultimoNodoPadre.right != null) {
+                root.value = ultimoNodoPadre.right.value;
+                ultimoNodoPadre.right = null;
+            } else if (ultimoNodoPadre.left != null) {
+                root.value = ultimoNodoPadre.left.value;
+                ultimoNodoPadre.left = null;
+            }
+        }
+        ordenar(root);
+
+        return root;
     }
-    ordenar(root);
 
-    return root;
-}
+    private Node encontrarPadreUltimoNodo(Node node) {
+        if (node == null || (node.left == null && node.right == null)) {
+            return null;
+        }
 
-private Node encontrarPadreUltimoNodo(Node node) {
-    if (node == null || (node.left == null && node.right == null)) {
-        return null;
+        if (node.right != null && (node.right.left != null || node.right.right != null)) {
+            return encontrarPadreUltimoNodo(node.right);
+        } else if (node.left!= null && (node.left.left != null || node.left.right != null)) {
+            return encontrarPadreUltimoNodo(node.left);
+        }
+
+        return node;
     }
-
-    if (node.right != null && (node.right.left != null || node.right.right != null)) {
-        return encontrarPadreUltimoNodo(node.right);
-    } else if (node.left!= null && (node.left.left != null || node.left.right != null)) {
-        return encontrarPadreUltimoNodo(node.left);
-    }
-
-    return node;
-}
 
  private void traversePreOrder(StringBuilder sb, String padding, String pointer, Node node) {
         if (node != null) {
@@ -166,7 +167,7 @@ private Node encontrarPadreUltimoNodo(Node node) {
         traversePreOrder(sb, "", "", root);
         os.print(sb.toString());
     }
-    
+ 
     public void preOrden() {
         System.out.println("Preorden:");
         preOrden(root);
