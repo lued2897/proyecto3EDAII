@@ -156,9 +156,9 @@ public class Heap {
             String pointerForRight = "└──";
             String pointerForLeft = (node.right != null) ? "├──" : "└──";
 
-            
-            traversePreOrder(sb, paddingForBoth, pointerForRight, node.right);
             traversePreOrder(sb, paddingForBoth, pointerForLeft, node.left);
+            traversePreOrder(sb, paddingForBoth, pointerForRight, node.right);
+
         }
     }
 
@@ -182,7 +182,7 @@ public class Heap {
         }
     }
 
-    public static void main(String[] args) {
+    public static void menuHeap() {
 
         Scanner scanner = new Scanner(System.in);
         Heap heap = new Heap();
