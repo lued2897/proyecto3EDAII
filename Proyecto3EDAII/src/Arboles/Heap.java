@@ -132,10 +132,10 @@ private Node encontrarPadreUltimoNodo(Node node) {
         return null;
     }
 
-    if (node.left != null && (node.left.left != null || node.left.right != null)) {
-        return encontrarPadreUltimoNodo(node.left);
-    } else if (node.right != null && (node.right.left != null || node.right.right != null)) {
+    if (node.right != null && (node.right.left != null || node.right.right != null)) {
         return encontrarPadreUltimoNodo(node.right);
+    } else if (node.left!= null && (node.left.left != null || node.left.right != null)) {
+        return encontrarPadreUltimoNodo(node.left);
     }
 
     return node;
