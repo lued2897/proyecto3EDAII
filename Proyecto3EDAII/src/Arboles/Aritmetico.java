@@ -54,7 +54,6 @@ public class Aritmetico{
         }
         temp = st.pop();
         this.root=temp;
-        //return temp;
     }
     
     
@@ -113,10 +112,10 @@ public class Aritmetico{
             postOrderEvaluation(node.right, stack);
 
             if (Character.isDigit(node.data)) {
-                // Operand
+                // Operando
                 stack.push(Character.getNumericValue(node.data));
             } else if (isOperator(node.data)) {
-                // Operator
+                // Operador
                 int operand2 = stack.pop();
                 int operand1 = stack.pop();
                 int result = performOperation(operand1, operand2, node.data);
