@@ -145,7 +145,7 @@ public class Aritmetico{
         }
     }
     
-    public static void main(String[] args) {
+    public static void menu() {
         
         Scanner scanner = new Scanner(System.in);
         Aritmetico arbolAritmetico = null;
@@ -187,7 +187,7 @@ public class Aritmetico{
                     break;
                 case 4:
                     System.out.println("Saliendo del programa.");
-                    System.exit(0);
+                    return;
                 default:
                     System.out.println("Opción no válida. Intente nuevamente.");
             }

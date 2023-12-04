@@ -350,9 +350,7 @@ public class AVL extends Tree {
                 //System.out.println("e.getMessage;");
                 System.out.println("Solo se permiten enteros");
             }    
-        }
-        
-        
+        } 
     }
     
     
