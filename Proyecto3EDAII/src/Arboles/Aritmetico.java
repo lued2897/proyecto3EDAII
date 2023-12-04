@@ -1,15 +1,12 @@
 package Arboles;
 
 import java.io.PrintStream;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Aritmetico{
     Node root;
     
-    public Aritmetico() {
-        super();
-    }
-
     public Aritmetico(char data) {
         root= new Node(data);
     }
@@ -53,7 +50,6 @@ public class Aritmetico{
         }
         temp = st.pop();
         this.root=temp;
-        //return temp;
     }
     
     
@@ -112,10 +108,10 @@ public class Aritmetico{
             postOrderEvaluation(node.right, stack);
 
             if (Character.isDigit(node.data)) {
-                // Operand
+                // Operando
                 stack.push(Character.getNumericValue(node.data));
             } else if (isOperator(node.data)) {
-                // Operator
+                // Operador
                 int operand2 = stack.pop();
                 int operand1 = stack.pop();
                 int result = performOperation(operand1, operand2, node.data);
@@ -144,26 +140,52 @@ public class Aritmetico{
         }
     }
     
-    
-    public static void main(String[] args) {
+    public static void menu() {
         
-        String notacionInfija = "3+4*(2-7)/5";// = -1
-        System.out.println(notacionInfija);
-        
-        String notacionPostfija = ShuntingYard.infixToRpn(notacionInfija);
-        System.out.println("Notacion Polaca Inversa: " + notacionPostfija);
-                
-        Aritmetico arbolAritmetico = new Aritmetico(notacionPostfija);
-        //Node expressionTreeRoot = arbolAritmetico.expressionTree(notacionPostfija);
-        //arbolAritmetico.root = expressionTreeRoot;
+        Scanner scanner = new Scanner(System.in);
+        Aritmetico arbolAritmetico = null;
 
-        // Evaluate the expression tree
-        int result = arbolAritmetico.evaluateExpressionTree(arbolAritmetico.root);
-        System.out.println("Resultado: " + result);
-        
-        // Imprimir el resultado de la operación
-        arbolAritmetico.printExpressionTree(System.out);
-        
+        while (true) {
+            System.out.println("\nMenú:");
+            System.out.println("1. Ingresar expresión aritmética");
+            System.out.println("2. Imprimir árbol");
+            System.out.println("3. Resolver expresión ");
+            System.out.println("4. Salir");
+
+            System.out.print("Ingrese su opción: ");
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese la expresión aritmética: ");
+                    scanner.nextLine();
+                    String expresion = scanner.nextLine();
+                    String expresionPostfija = ShuntingYard.infixToRpn(expresion);
+                    arbolAritmetico = new Aritmetico(expresionPostfija);
+                    System.out.println("Árbol creado correctamente.");
+                    break;
+                case 2:
+                    if (arbolAritmetico != null) {
+                        System.out.println("Árbol de expresión:");
+                        arbolAritmetico.printExpressionTree(System.out);
+                    } else {
+                        System.out.println("Primero ingrese la expresión aritmética y cree el árbol.");
+                    }
+                    break;
+                case 3:
+                    if (arbolAritmetico != null) {
+                        int resultado = arbolAritmetico.evaluateExpressionTree(arbolAritmetico.root);
+                        System.out.println("Resultado: " + resultado);
+                    } else {
+                        System.out.println("Primero ingrese la expresión aritmética y cree el árbol.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Saliendo del programa.");
+                    return;
+                default:
+                    System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        }
     }
 }
-

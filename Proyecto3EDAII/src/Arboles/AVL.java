@@ -277,7 +277,7 @@ public class AVL extends Tree {
     /**
      * 
      */
-    public void menu(){
+    public static void menu(){
         AVL tree = new AVL();
         int opt=0;
         int input;
@@ -329,7 +329,7 @@ public class AVL extends Tree {
         }
     }
     
-    private void opciones(){
+    private static void opciones(){
         System.out.println("(0) Mostrar opciones");
         System.out.println("(1) Agregar clave");
         System.out.println("(2) Eliminar clave");
@@ -339,7 +339,7 @@ public class AVL extends Tree {
         System.out.println("(-1) Salir");
     }
     
-    private int readInt(){
+    private static int readInt(){
         int val;
         while(true){
             try{
@@ -350,9 +350,7 @@ public class AVL extends Tree {
                 //System.out.println("e.getMessage;");
                 System.out.println("Solo se permiten enteros");
             }    
-        }
-        
-        
+        } 
     }
     
     
@@ -399,7 +397,7 @@ public class AVL extends Tree {
         System.out.println(tree.search(25));
         tree.print(System.out);
         
-        tree.menu();
+        menu();
     
         
     }
