@@ -7,10 +7,6 @@ import java.util.Stack;
 public class Aritmetico{
     Node root;
     
-    public Aritmetico() {
-        super();
-    }
-
     public Aritmetico(char data) {
         root= new Node(data);
     }
