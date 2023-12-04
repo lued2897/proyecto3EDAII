@@ -75,8 +75,4 @@ public class ShuntingYard {
 		return output;
 	}
 
-	/*public static void main(String[] args){
-		String expression = "3+4*(2-7)/5";
-		System.out.println(infixToRpn(expression));
-	}*/
 }
