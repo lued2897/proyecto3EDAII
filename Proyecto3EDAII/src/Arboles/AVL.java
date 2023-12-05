@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Arboles;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- *
- * @author lalox
+/**Implementación de un árbol binario balanceado AVL
+ * <p>Autor: Perez Osorio Luis Eduardo</p>
+ * <p>Ultima modificación 04/12/23</p>
  */
 public class AVL extends Tree {
     
@@ -17,9 +13,9 @@ public class AVL extends Tree {
         super();
     }
     
-    /**
+    /**Insercion balanceada
      * 
-     * @param data 
+     * @param data Valor a insertar en el arbol. No puede ser un valor repetido.
      */
     @Override
     public void add(int data){
@@ -34,12 +30,11 @@ public class AVL extends Tree {
         
     }
     
-    /**
+    /**Inserción balanceada
      * 
-     * @param root
-     * @param data
-     * @param height
-     * @return 
+     * @param root Nodo sobre el cual se hace la insercion.
+     * @param data Clave a insertar
+     * @return nodo actualizado y balanceado despues de la insercion
      */
     private Node add(Node root,int data){
         //System.out.println("a");
@@ -61,9 +56,9 @@ public class AVL extends Tree {
         
     }
     
-    /**
+    /** Eliminación balanceada.
      * 
-     * @param data 
+     * @param data valor a eliminar del arbol
      */
     @Override
     public void remove(int data){
@@ -71,11 +66,11 @@ public class AVL extends Tree {
         
     }
     
-    /**
+    /**Eliminación balanceada
      * 
-     * @param node
-     * @param data
-     * @return 
+     * @param node Nodo sobre el cual se hace la eliminación.
+     * @param data Clave a eliminar.
+     * @return Nodo actualizado y balanceado despues de la eliminación.
      */
     private Node remove(Node node,int data){
         if(node == null){
@@ -105,10 +100,10 @@ public class AVL extends Tree {
         //return node;
     }
    
-    /**
-     * 
-     * @param node
-     * @return 
+    /**Rotación a la izquierda.
+     * <p>El hijo derecho del sub-árbol desbalanceado se cambia a la raíz y se conecta el hijo izquierdo de este al nodo original</p>
+     * @param node Nodo pivote / raíz del sub-árbol desbalanceado.
+     * @return Raíz despues de la rotación.
      */
     private Node leftRotation(Node node){
         Node r = node.right;
@@ -127,10 +122,10 @@ public class AVL extends Tree {
         return r;
     }
     
-    /**
-     * 
-     * @param node
-     * @return 
+    /**Rotación a la derecha.
+     * <p>El hijo izquierdo del sub-árbol desbalanceado se cambia a la raíz y se conecta el hijo derecho de este al nodo original</p>
+     * @param node Nodo pivote / raíz del sub-árbol desbalanceado.
+     * @return Raíz despues de la rotación.
      */
     private Node rightRotation(Node node){
         Node l = node.left;
@@ -149,10 +144,10 @@ public class AVL extends Tree {
         return l;
     }
     
-    /**
+    /** Obtiene el factor de balance de un nodo con la diferencia de la altura de los nodos izquierdo y derecho.
      * 
-     * @param node
-     * @return 
+     * @param node Nodo
+     * @return Factor de balance del nodo recibido.
      */
     private int getBalance(Node node){
        if(node == null){
@@ -170,12 +165,11 @@ public class AVL extends Tree {
    }
     
     
-   //Metodo para balancear la insercion
-    /**
-     * 
-     * @param node
-     * @param data
-     * @return 
+    /**Método para balancear la inserción
+     * <p>Utiliza rotaciones para rebalancear el árbol despues de una inserción.</p>
+     * @param node Nodo a balancear.
+     * @param data Valor ingresado en la inserción.
+     * @return Nodo balanceado.
      */
     private Node balance(Node node, int data){
        int balance = getBalance(node);
@@ -208,11 +202,10 @@ public class AVL extends Tree {
        return node;
    }
    
-   //Metodo para balancear la eliminacion
-    /**
-     * 
-     * @param node
-     * @return 
+    /**Método para balancear la eliminacion
+     * <p>Utiliza rotaciones para rebalancear el árbol despues de una eliminacion.</p>
+     * @param node Nodo a balancear..
+     * @return Nodo balanceado.
      */
     private Node balance(Node node){
        int balance = getBalance(node);
@@ -245,20 +238,20 @@ public class AVL extends Tree {
        return node;
    }
    
-    /**
+    /**Busqueda en BST.
      * 
-     * @param data
-     * @return 
+     * @param data Valor buscado.
+     * @return true si encuentra el valor, false si no se encuentra.
      */
     public boolean search(int data){
        return search(this.root,data);
     }
    
-    /**
+    /**Busqueda en BST.
      * 
-     * @param node
-     * @param data
-     * @return 
+     * @param node Nodo sobre el cual se realiza la busqueda.
+     * @param data Valor buscado.
+     * @return true si encuentra el valor, false si no se encuentra.
      */
     private boolean search(Node node,int data){
        if(node == null){
@@ -274,7 +267,7 @@ public class AVL extends Tree {
         }
     }
    
-    /**
+    /**Menu de usuario para crear un árbol balanceado ademas de ingresar y eliminar valores de este.
      * 
      */
     public static void menu(){
@@ -329,6 +322,9 @@ public class AVL extends Tree {
         }
     }
     
+    /**Opciones del menu de usuario.
+     * 
+     */
     private static void opciones(){
         System.out.println("(0) Mostrar opciones");
         System.out.println("(1) Agregar clave");
@@ -339,6 +335,10 @@ public class AVL extends Tree {
         System.out.println("(-1) Salir");
     }
     
+    /**Método para asegurar que los datos ingresados sean enteros.
+     * 
+     * @return valor entero ingresado.
+     */
     private static int readInt(){
         int val;
         while(true){
@@ -354,7 +354,7 @@ public class AVL extends Tree {
     }
     
     
-    /**
+    /**Método para probar la funcionalidad del arbol AVL.
      * 
      * @param args 
      */
