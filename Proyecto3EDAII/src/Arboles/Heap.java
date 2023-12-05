@@ -10,9 +10,9 @@ import java.util.Scanner;
  * Permite agregar elementos, eliminar la raíz, imprimir el árbol y realizar
  * recorridos en amplitud y en preorden.
  *
- * <p>Última modificación: 04/12/2023</p>
  *
- * @author Hernández Sánchez Karla
+ * <p> Autor: Hernández Sánchez Karla</p>
+ * <p>Última modificación: 04/12/2023</p>
  */
 
 public class Heap {
