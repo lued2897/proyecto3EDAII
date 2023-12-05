@@ -4,8 +4,19 @@ package Arboles;
 import java.util.Stack;
 import java.lang.Character;
 
+/**
+* <p> Última modificación: 04/12/2023 </p>
+* @author Ruiz Cervantes Karla Patricia
+* 
+*/
+
 public class ShuntingYard {
 
+	
+    /**
+     * @param c 
+	 * @return 
+     */
 	private static boolean letterOrDigit(char c){
             if (Character.isLetterOrDigit(c))
 		return true;
@@ -13,6 +24,10 @@ public class ShuntingYard {
 		return false;
 	}
 
+	/**
+     * @param ch 
+	 * @return 
+     */
 	static int getPrecedence(char ch){
             if (ch == '+' || ch == '-')
 		return 1;
@@ -24,6 +39,10 @@ public class ShuntingYard {
 		return -1;
 	}
 	
+	/**
+     * @param ch 
+	 * @return 
+     */
 	static boolean hasLeftAssociativity(char ch) {
             if (ch == '+' || ch == '-' || ch == '/' || ch == '*') {
 		return true;
@@ -32,6 +51,10 @@ public class ShuntingYard {
             }
 	}
 
+	/**
+     * @param expression 
+	 * @return 
+     */
 	public static String infixToRpn(String expression){
 
             Stack<Character> stack = new Stack<>();
@@ -74,4 +97,19 @@ public class ShuntingYard {
             }
             return output;
 	}
+
+	public static void main(String[] args) {
+
+		//Prueba
+		//Entrada: (a+b)*(c-d)/e
+		//Resultado esperado: ab+cd-*e/
+		
+		String infixExpression = "(a+b)*(c-d)/e";
+        String result = infixToRpn(infixExpression);
+
+		System.out.println("Expresión en notación infija: " + infixExpression);
+		System.out.println("Notación Polaca Inversa: " + result);
+
+    }
+
 }

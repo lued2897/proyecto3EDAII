@@ -4,13 +4,27 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+* <p> Última modificación: 04/12/2023 </p>
+* @author Ruiz Cervantes Karla Patricia
+* 
+*/
+
 public class Aritmetico{
     Node root;
     
+    /**
+     * 
+     * @param data 
+     */
     public Aritmetico(char data) {
         root= new Node(data);
     }
     
+    /**
+     * 
+     * @param postfix 
+     */
     public Aritmetico(String postfix) {
         expressionTree(postfix);
     }
@@ -28,6 +42,10 @@ public class Aritmetico{
 	}
     }
     
+    /**
+     * 
+     * @param postfix 
+     */
     private void expressionTree(String postfix) {
         Stack<Node> st = new Stack<>();
         Node t1, t2, temp;
@@ -61,6 +79,13 @@ public class Aritmetico{
 	inorder(root.right);
     }
     
+    /**
+     * 
+     * @param sb
+     * @param padding
+     * @param pointer
+     * @param node
+     */
     public void traversePreOrder(StringBuilder sb, String padding, String pointer, Node node) {
         if (node != null) {
             sb.append(padding);
@@ -86,7 +111,11 @@ public class Aritmetico{
         os.print(sb.toString());
     }
     
-    
+    /**
+     * 
+     * @param root
+     * @return 
+     */
     public int evaluateExpressionTree(Node root) {
         if (root == null) {
             throw new IllegalArgumentException("Expression tree is empty.");
@@ -102,6 +131,11 @@ public class Aritmetico{
         return stack.pop();
     }
 
+    /**
+     * 
+     * @param node
+     * @param satack
+     */
     private void postOrderEvaluation(Node node, Stack<Integer> stack) {
         if (node != null) {
             postOrderEvaluation(node.left, stack);
@@ -122,6 +156,13 @@ public class Aritmetico{
         }
     }
 
+    /**
+     * 
+     * @param operand1
+     * @param operand2
+     * @param operator
+     * @return 
+     */
     private int performOperation(int operand1, int operand2, char operator) {
         switch (operator) {
             case '+':
