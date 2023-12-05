@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Arboles;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- *
+/**Clase principal del programa, conecta los diferentes menus de los 3 tipos de arboles
+ * <p>Autor: Perez Osorio Luis Eduardo</p>
+ * <p>Ultima modificación 04/12/23</p>
  * @author lalox
  */
 public class Main {
