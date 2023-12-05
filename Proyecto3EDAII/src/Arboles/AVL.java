@@ -272,7 +272,7 @@ public class AVL extends Tree {
             return search(node.right,data);
             //root.height = maxHeight(root.left,root.right)+1; //test
         }
-   }
+    }
    
     /**
      * 
@@ -385,16 +385,21 @@ public class AVL extends Tree {
         }
         //tree.remove(30);
         tree.breadthFrist();
-        tree.print(System.out);
-        System.out.println("ñgdsgds");
-        System.out.println(tree.search(78));
-        System.out.println(tree.search(25));
         
+        System.out.println("Arbol final");
+        tree.print(System.out);
+        
+        //System.out.println("Arbol final");
+        //System.out.println(tree.search(78));
+        //System.out.println(tree.search(25));
+        
+        
+        System.out.println("Eliminacion de 15,25,20");
         tree.remove(15);
         tree.remove(25);
         tree.remove(20);
-        System.out.println(tree.search(78));
-        System.out.println(tree.search(25));
+        //System.out.println(tree.search(78));
+        //System.out.println(tree.search(25));
         tree.print(System.out);
         
         menu();

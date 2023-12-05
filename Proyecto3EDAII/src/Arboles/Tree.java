@@ -55,20 +55,24 @@ public class Tree {
     }
     
     public void add(int data){
-        root = add(root,data,0);
-        root.height = maxHeight(root.left,root.right)+1;
+        if(!search(data)){
+            root = add(root,data);
+            root.height = maxHeight(root.left,root.right)+1;
+        }else{
+            System.out.println("NO SE PERMITEN VALORES REPETIDOS");
+        }
     }
     
-    private Node add(Node root,int data,int height){
+    private Node add(Node root,int data){
         //System.out.println("a");
         if(root == null){
             //return (new Node(data,height)); //test
-            return (new Node(data,0));
+            return (new Node(data,1));
         }else if(data < root.data){
-            root.left = add(root.left,data,height+1);
+            root.left = add(root.left,data);
             root.height = maxHeight(root.left,root.right)+1; //test
         }else{
-            root.right = add(root.right,data,height+1);
+            root.right = add(root.right,data);
             root.height = maxHeight(root.left,root.right)+1; //test
         }
         return root;
@@ -80,6 +84,7 @@ public class Tree {
             return node.right;
         }
         node.left = removeMin(node.left);
+        //System.out.println("RmoveMin node.data="+node.data+"  left:"+node.left );
         return node;
     }
     
@@ -104,6 +109,7 @@ public class Tree {
             Node temp = node;
             int tempH= node.height; //WIP
             node = min(temp.right);
+            //System.out.println("min= "+node.data);
             node.right = removeMin(temp.right);
             node.left = temp.left;
             node.height= tempH;
@@ -156,8 +162,32 @@ public class Tree {
 
     public void print(PrintStream os) {
         StringBuilder sb = new StringBuilder();
-        traversePreOrder(sb, "", "", root); 
+        traversePreOrder(sb, "", "->", root); 
         os.print(sb.toString());
+    }
+    
+    public boolean search(int data){
+       return search(this.root,data);
+    }
+   
+    /**
+     * 
+     * @param node
+     * @param data
+     * @return 
+     */
+    private boolean search(Node node,int data){
+       if(node == null){
+            return false;
+        }else if(data == node.data){
+            return true;
+        }else if(data < node.data){
+            return search(node.left,data);
+            //root.height = maxHeight(root.left,root.right)+1; //test
+        }else{
+            return search(node.right,data);
+            //root.height = maxHeight(root.left,root.right)+1; //test
+        }
     }
     
     
@@ -204,9 +234,10 @@ public class Tree {
         for(int i: values){
             tree.add(i);
         }
-        //tree.remove(30);
-        tree.breadthFrist();
         tree.print(System.out);
+        tree.remove(70);
+        tree.breadthFrist();
+        
         //tree.print(System.out);
     }
 }
